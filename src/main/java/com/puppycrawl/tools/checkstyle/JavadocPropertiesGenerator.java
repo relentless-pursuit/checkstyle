@@ -111,6 +111,11 @@ public final class JavadocPropertiesGenerator {
         catch (IOException ex) {
             throw new CheckstyleException("Failed to write javadoc properties of '"
                     + options.inputFile + "' to '" + options.outputFile + "'", ex);
+
+
+
+
+
         }
     }
 
