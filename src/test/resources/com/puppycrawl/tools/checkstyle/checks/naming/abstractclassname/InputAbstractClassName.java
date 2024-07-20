@@ -27,6 +27,7 @@ class NonAbstractClass {
 }
 
 
+
 class AbstractClass {
 }
 
