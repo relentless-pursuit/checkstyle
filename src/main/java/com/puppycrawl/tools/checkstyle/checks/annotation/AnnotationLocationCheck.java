@@ -123,6 +123,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 @StatelessCheck
 public class AnnotationLocationCheck extends AbstractCheck {
 
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
