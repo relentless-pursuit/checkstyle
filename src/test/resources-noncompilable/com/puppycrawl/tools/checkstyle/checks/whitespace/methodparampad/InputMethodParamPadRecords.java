@@ -40,6 +40,8 @@ public class InputMethodParamPadRecords {
         }
     }
 
+    // added a new comment
+
     //in method def
     record Mtr4 () { // violation ''(' is preceded with whitespace'
         void foo (){} // violation ''(' is preceded with whitespace'
