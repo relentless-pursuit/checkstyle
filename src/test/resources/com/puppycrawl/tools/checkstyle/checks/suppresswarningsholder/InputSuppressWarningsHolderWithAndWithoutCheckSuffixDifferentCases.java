@@ -12,6 +12,8 @@ format = (default)^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$
 
 package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
 
+
+
 public class InputSuppressWarningsHolderWithAndWithoutCheckSuffixDifferentCases {
     private static final int a = 0; // violation 'Name 'a' must match pattern'
 
