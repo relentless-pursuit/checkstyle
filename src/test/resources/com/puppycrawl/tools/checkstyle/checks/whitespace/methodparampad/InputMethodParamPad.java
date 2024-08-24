@@ -13,6 +13,9 @@ import java.util.Vector;
 /** Test input for MethodDefPadCheck */
 public class InputMethodParamPad
 {
+
+
+
     public InputMethodParamPad()
     {
         super();
