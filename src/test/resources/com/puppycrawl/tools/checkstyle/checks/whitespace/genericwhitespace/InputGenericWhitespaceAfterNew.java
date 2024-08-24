@@ -13,6 +13,10 @@ import static java.lang.annotation.ElementType.TYPE_USE;
 public class InputGenericWhitespaceAfterNew {
     public class Inner<T> { }
 
+
+
+
+
     Object obj1 = new <String>Object();
     Object obj2 = new <String> Object(); // violation, ''>' is followed by whitespace.'
 
