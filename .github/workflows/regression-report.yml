@@ -525,7 +525,7 @@ jobs:
         run: |
           cd .ci-temp/contribution/checkstyle-tester
           bash
-          REF="forked/$BRANCH"
+          REF="${{ github.head_ref || github.ref_name }}"
           REPO="${{ github.workspace }}/.ci-temp/checkstyle"
           BASE_BRANCH="upstream/master"
           export MAVEN_OPTS="-Xmx5g"
