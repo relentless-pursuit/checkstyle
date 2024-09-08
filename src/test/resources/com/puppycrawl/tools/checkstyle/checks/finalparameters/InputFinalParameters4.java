@@ -141,6 +141,9 @@ class InputFinalParameters4
         }
     }
 
+
+
+
     native void method(int i);
 }
 
