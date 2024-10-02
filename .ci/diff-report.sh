@@ -37,7 +37,7 @@ case $1 in
 download-files)
   checkForVariable "GITHUB_TOKEN"
   mkdir -p .ci-temp
-  echo "Downloading files..."
+  echo "Downloading filesXXX"
 
   # check for projects link from PR, if not found use default from contribution repo
   LINK="${DIFF_PROJECTS_LINK:-$DEFAULT_PROJECTS_LINK}"
