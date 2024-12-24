@@ -416,11 +416,48 @@ jobs:
             || env.DEFAULT_PROJECTS_LINK
             }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CONFIG_FOLDER: ${{ github.workspace }}/.ci-temp/config
         run: |
           mkdir -p .ci-temp
+          mkdir -p "$CONFIG_FOLDER"
+          
+          # Download main config file
           if ! ./.ci/diff-report.sh download-files; then
             ./.ci/append-to-github-output.sh "failed" "true"
             exit 1
+          fi
+          
+          # Extract and download additional config files
+          if [ -f ".ci-temp/diff_config.xml" ]; then
+            echo "Contents of main config file:"
+            echo "----------------------------"
+            cat .ci-temp/diff_config.xml
+            echo "----------------------------"
+            
+            # Find all headerFile properties
+            HEADER_FILES=$(grep -o 'headerFile.*value="[^"]*"' .ci-temp/diff_config.xml | cut -d'"' -f2)
+            
+            # Download each header file
+            for FILE in $HEADER_FILES; do
+              # Extract the filename
+              FILENAME=$(basename "$FILE")
+              # Construct the URL using the same base as the config file
+              BASE_URL=$(dirname "$DIFF_CONFIG_LINK")
+              FILE_URL="$BASE_URL/$FILENAME"
+              
+              echo "Downloading additional config file: $FILE_URL"
+              # Download the file to config folder
+              curl -o "$CONFIG_FOLDER/$FILENAME" "$FILE_URL"
+              if [ $? -ne 0 ]; then
+                echo "Failed to download: $FILE_URL"
+                exit 1
+              fi
+              
+              echo "Contents of downloaded file $FILENAME:"
+              echo "----------------------------"
+              cat "$CONFIG_FOLDER/$FILENAME"
+              echo "----------------------------"
+            done
           fi
 
       - name: Cache config files
